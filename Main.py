@@ -10,6 +10,7 @@ ticks_between_data_points = 4
 
 #set up world
 world_settings = Simulation.World_Settings()
+world_settings.initial_infected_population = int(input("initial infected population: "))
 world = Simulation.World(population, hospital_capacity, world_settings)
 simulation_data = []
 
