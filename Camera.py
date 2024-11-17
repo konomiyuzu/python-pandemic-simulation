@@ -205,6 +205,18 @@ class Camera:
             #y coordinate of spot above the follow target
             above_position = self.screen_size.y/2 - (self.settings.font_size/2 + self.settings.person_radius)*self.zoom 
 
+            if self.follow_target.infected:
+                if self.follow_target.infection_progress < self.world.settings.infection_lengths[0]:
+                    infection_stage = 0
+                elif self.follow_target.infection_progress < self.world.settings.infection_lengths[0] + self.world.settings.infection_lengths[1]:
+                    infection_stage = 1
+                else:
+                    infection_stage = 2
+
+                infection_stage_text = self.font.render(f"stage: {["dormant", "infectious", "hospital"][infection_stage]}", True, (0, 0, 0), (255,255,255))
+                infection_stage_rect = infection_stage_text.get_rect(center = (self.screen_size.x//2, above_position - 2*self.settings.font_size))
+                self.screen.blit(infection_stage_text, infection_stage_rect)
+
             infection_progress = self.follow_target.infection_progress/sum(self.world.settings.infection_lengths)
             infection_text = self.font.render(f"infection: {round(infection_progress*100,2)}%", True, (0, 0, 0), (255,255,255))
             infection_text_rect = infection_text.get_rect(center = (self.screen_size.x//2, above_position - self.settings.font_size))
