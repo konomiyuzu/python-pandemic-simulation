@@ -87,9 +87,9 @@ class Camera:
         if keys[pygame.locals.K_DOWN] or keys[pygame.locals.K_s]:
             self.position.y += speed
 
-        if keys[pygame.locals.K_EQUALS] or keys[pygame.locals.K_q]:
+        if keys[pygame.locals.K_EQUALS] or keys[pygame.locals.K_e]:
             self.zoom += zoom_speed
-        if keys[pygame.locals.K_MINUS] or keys[pygame.locals.K_e]:
+        if keys[pygame.locals.K_MINUS] or keys[pygame.locals.K_q]:
             self.zoom -= zoom_speed
         
         #mouse inputs
