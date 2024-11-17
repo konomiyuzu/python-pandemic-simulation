@@ -39,6 +39,9 @@ class Camera:
     follow_target:Simulation.Person = None
     zoom: float = 1
     show_ui: bool = True
+    show_controls: bool = False
+
+    controls_image: pygame.Surface
 
     def color_lerp(color_a:tuple[int,int,int], color_b:tuple[int,int,int], t:float) -> tuple[int, int, int]:
         r1, g1, b1 = color_a
@@ -59,6 +62,7 @@ class Camera:
         self.position = Vector2D.zero()
         self.screen_size = Vector2D(*screen.get_size())
         self.font = pygame.font.Font(size=settings.font_size)
+        self.controls_image = pygame.image.load("controls.png")
     
     def update(self) -> None:
         #stop following dead people
@@ -112,6 +116,10 @@ class Camera:
                             self.follow_target = person
                             break
             
+            #right click to pause
+            if event.type == pygame.MOUSEBUTTONDOWN and event.button == 3:
+                self.world.paused = not self.world.paused
+            
             #mouse zooming
             if event.type == pygame.MOUSEWHEEL:
                 self.zoom += event.y * zoom_speed
@@ -145,6 +153,10 @@ class Camera:
                     case pygame.locals.K_SPACE:
                         self.position = Vector2D.zero()
                         self.zoom = 1
+                    
+                    #display controls
+                    case pygame.locals.K_c:
+                        self.show_controls = not self.show_controls
             
 
         #clamp sim speed:
@@ -195,14 +207,19 @@ class Camera:
 
             infection_progress = self.follow_target.infection_progress/sum(self.world.settings.infection_lengths)
             infection_text = self.font.render(f"infection: {round(infection_progress*100,2)}%", True, (0, 0, 0), (255,255,255))
-            infection_text_rect = infection_text.get_rect(center = (self.screen_size.x/2, above_position - self.settings.font_size))
+            infection_text_rect = infection_text.get_rect(center = (self.screen_size.x//2, above_position - self.settings.font_size))
             self.screen.blit(infection_text, infection_text_rect)
 
             immunity = self.follow_target.immunity
             immunity_text = self.font.render(f"immunity: {round(immunity*100,2)}%", True, (0, 0, 0), (255,255,255))
-            immunity_text_rect = immunity_text.get_rect(center = (self.screen_size.x/2, above_position))
+            immunity_text_rect = immunity_text.get_rect(center = (self.screen_size.x//2, above_position))
             self.screen.blit(immunity_text, immunity_text_rect)
-
+        
+        #render controls image
+        if self.show_controls:
+            controls_rect = self.controls_image.get_rect(center = (self.screen_size.x//2, self.screen_size.y//2))
+            pygame.draw.rect(self.screen, (0,0,0), controls_rect.inflate(10,10))
+            self.screen.blit(self.controls_image, controls_rect)
 
     def draw_people(self) -> None:
         for person in self.world.people:
