@@ -278,7 +278,7 @@ class Camera:
             pygame.draw.rect(self.screen, self.settings.building_colors[building.type], pygame.Rect(position.x, position.y, dimensions.x, dimensions.y))
 
     def render(self) -> None:
-        self.screen.fill((5 * 16 + 15,7 * 16 + 2,7 * 16 + 4))
+        self.screen.fill((95,114,116))
 
         self.draw_buildings()
         self.draw_people()
