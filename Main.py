@@ -11,6 +11,7 @@ ticks_between_data_points = 4
 #set up world
 world_settings = Simulation.World_Settings()
 world_settings.initial_infected_population = int(input("initial infected population: "))
+print("initializing, please wait")
 world = Simulation.World(population, hospital_capacity, world_settings)
 simulation_data = []
 
@@ -27,6 +28,7 @@ camera = Camera.Camera(screen, world, grapher, camera_settings)
 #last update times of world, camera and graph
 last_update_times = [time.time(),]*3
 
+print("initialization complete, switch to the pygame window")
 #main update loop
 while True:
     delta_times = [time.time() - i for i in last_update_times]
