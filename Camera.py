@@ -140,6 +140,11 @@ class Camera:
                     #hide ui
                     case pygame.locals.K_TAB:
                         self.show_ui = not self.show_ui
+
+                    #recenter camera
+                    case pygame.locals.K_SPACE:
+                        self.position = Vector2D.zero()
+                        self.zoom = 1
             
 
         #clamp sim speed:
