@@ -110,7 +110,7 @@ class World_Settings:
 class World:
     buildings: dict[int, list[Building]]
     people: list[Person]
-    paused: bool = False
+    paused: bool = True
     
     day_length:int
     time:int = 0
