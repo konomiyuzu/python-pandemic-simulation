@@ -58,7 +58,6 @@ class Camera:
 
         return (round(r), round(g), round(b))
 
-
     def __init__(self, screen: pygame.Surface, world:Simulation.World, grapher:Graphing.Grapher, settings:Camera_Settings):
         self.world = world
         self.grapher = grapher

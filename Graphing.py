@@ -62,9 +62,6 @@ class Grapher:
         self.update_line_data(self.last_data)
         self.axis.set_xlim(0,self.ticks_between_data_points*len(self.last_data)/self.world.day_length + .5)
 
-
-
-    
     #updates the data in the graph
     #takes data in the form [(susceptible, infected, hospitalized, Immune, Dead)]
     def update_line_data(self, data:list[tuple[int, int, int, int, int]]) -> None:

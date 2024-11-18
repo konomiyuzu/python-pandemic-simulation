@@ -198,9 +198,7 @@ class World:
             position = position + Vector2D(random.randint(-dimensions.x, dimensions.x), random.randint(-dimensions.x, dimensions.x))
             if not any(World.intersects(position - margin, dimensions + margin * 2, i.position, i.dimensions) for i in buildings):
                 return position
-
         
-                
     #randomly generates new buildings until target capacity is added
     def add_buildings(self, type:int, target_capacity:int) -> None:
         
