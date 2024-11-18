@@ -96,5 +96,3 @@ class Grapher:
 
         self.axis.set_ylim(0,len(self.world.people)+.5)
         self.axis.set_xlim(0,self.ticks_between_data_points*len(data)/self.world.day_length + .5)
-
-        
