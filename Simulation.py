@@ -182,8 +182,7 @@ class World:
         return x_overlap and y_overlap
     
     #generates a building position that doesnt overlap
-    #ccurrently just generates random positions until it finds one
-
+    #currently just generates random positions until it finds one
     #picks a random building to act as a starting point, moves randomly around that building until a valid spot is found
     def get_new_building_position(self, dimensions:Vector2D) -> Vector2D:
         #edge case for first building
