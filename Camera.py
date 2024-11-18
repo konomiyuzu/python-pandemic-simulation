@@ -5,6 +5,7 @@ import Graphing
 from Vector2D import Vector2D
 
 class Camera_Settings:
+    background_color: tuple[int, int, int] = (95,114,116)
     building_colors:dict[Simulation.Building_Types, tuple[int, int, int]] = {
         Simulation.Building_Types.HOUSE: (217,217,217),
         Simulation.Building_Types.HOSPITAL: (255,191,186),
@@ -278,7 +279,7 @@ class Camera:
             pygame.draw.rect(self.screen, self.settings.building_colors[building.type], pygame.Rect(position.x, position.y, dimensions.x, dimensions.y))
 
     def render(self) -> None:
-        self.screen.fill((95,114,116))
+        self.screen.fill(self.settings.background_color)
 
         self.draw_buildings()
         self.draw_people()
