@@ -7,6 +7,7 @@ class Vector2D:
     def zero() -> Vector2D:
         return Vector2D(0,0)
 
+    #see wikipedia page on linear interpolation
     def lerp(v1:Vector2D, v2:Vector2D, t:float) -> Vector2D:
         return (v2 - v1)*t + v1
     

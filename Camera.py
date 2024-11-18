@@ -5,6 +5,7 @@ import Graphing
 from Vector2D import Vector2D
 
 class Camera_Settings:
+    #colors
     background_color: tuple[int, int, int] = (95,114,116)
     building_colors:dict[Simulation.Building_Types, tuple[int, int, int]] = {
         Simulation.Building_Types.HOUSE: (217,217,217),
@@ -12,14 +13,17 @@ class Camera_Settings:
         Simulation.Building_Types.WORK: (186,234,255),
         Simulation.Building_Types.MISC: (255,222,186)
     }
-    #healthy color, (dying) sick color. immune color
+    #healthy color, 100% sick color, 100% immune color
     people_colors:tuple[tuple[int,int,int], tuple[int,int,int]] = ((255,255,255), (0,255,0), (128,0,128))
 
+    #border thicknesses
     building_border_thickness: float = 5
-
     people_border_thickness: float = 5
+
+    #radius of a person
     person_radius:float = 20
 
+    #speeds of the camera during movement
     speed: float = 25
     zoom_speed: float = .1
 

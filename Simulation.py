@@ -79,10 +79,10 @@ class World_Settings:
     #(work, misc, home)
     day_phase_lengths:tuple[int, int, int] = (40, 30, 30)
 
-    #change for people to go to a misc building instead of going home during the misc phase
+    #chance for people to go to a misc building instead of going home during the misc phase
     misc_chance:float = 1/2
 
-    #change for an infected person to interact with someone in the same building per frame
+    #chance for an infected person to interact with someone in the same building per frame
     interaction_chance:float = 1/100
 
     #chance for an infected person to attempt to go to the hosiptal per frame    
@@ -93,10 +93,11 @@ class World_Settings:
     #length of (dormant_stage, infectious_stage, hospital_stage)
     infection_lengths:tuple[int] = (200,200,200)
 
+    #number to multiply immunity by every tick
     immunity_decay_rate:float = .9995
 
     #below fields only effect rendering
-
+    #minimum space between each building
     building_margin = Vector2D(25, 25)
 
     #min and max full sizes (actually size is scaled down by capacity) 
