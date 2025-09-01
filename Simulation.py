@@ -270,7 +270,12 @@ class World:
                     #chance to move to a random misc building during misc phase if there a building available
                     #otherwise go home
                     if random.random() < self.settings.misc_chance:
-                        person.move(random.choice(self.buildings[Building_Types.MISC]))
+                        misc_buildings = [i for i in self.buildings[Building_Types.MISC] if i.capacity > len(i.people)]
+                        if len(misc_buildings) != 0:
+                            person.move(random.choice(misc_buildings))
+                        else:
+                            person.move(person.home)
+                        
                     else:
                         person.move(person.home)
                 elif self.time == self.settings.day_phase_lengths[0] + self.settings.day_phase_lengths[1]:
